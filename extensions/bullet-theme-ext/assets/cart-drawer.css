@@ -1,0 +1,58 @@
+.ss-cart-drawer .head {
+    text-align: right;
+}
+
+.main-header > .cart {
+    display: none !important;
+}
+#mainContent {
+    opacity: 1 !important;
+}
+
+.ss-cart-drawer .head .close-cart-drawer {
+    font-size: 20px;   
+}
+
+.ss-cart-drawer .empty-message {
+    display: none;
+}
+.ss-cart-drawer.empty .empty-message {
+    display: block;
+}
+
+.ss-cart-drawer {
+    padding: 14px;
+    position: fixed;
+    height: 100%;
+    width: 400px;
+    background: #ffffff;
+    z-index: 100;
+    top: 0;
+    right: -400px;
+    transition: right .2s;
+}
+
+.ss-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .75);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .2s;
+}
+body.cart-drawer-open .ss-overlay {
+    opacity: 1;
+    z-index: 99;
+}
+
+body.cart-drawer-open {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body.cart-drawer-open .ss-cart-drawer {
+    right: 0px;
+}
