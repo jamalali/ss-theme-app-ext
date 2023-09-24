@@ -1,19 +1,35 @@
 <div class="ss-cart-drawer empty" id="ss-cart-drawer">
   <div class="head">
-    <a id="close-cart-drawer" class="close-cart-drawer">
-      &#x2715;
-    </a>
+    <h2 class="title">
+      Your Cart
+    </h2>
+    <cart-drawer-deactivator v-on:close-cart-drawer="closeCartDrawer"></cart-drawer-deactivator>
   </div>
   <div class="body">
-    <p class="empty-message">
+    <div class="loading-overlay" v-if="loading">
+      <div class="loading-line"></div>
+    </div>
+    <div class="summary" v-if="cart">
+      <h3 class="sub-title">
+        Summary
+      </h3>
+      <cart-summary :cart=cart></cart-summary>
+    </div>
+    <ul class="items-list">
+      <line-item v-for="(item, index) in items" :key="item.id" :item="item" :num="index" @remove="removeLineItem" @update-qty="updateLineQty"></line-item>
+    </ul>
+    <p v-if="items.length == 0" class="empty-message">
       Your cary is empty
     </p>
   </div>
+  <div class="footer">
+    <button id="thecheckoutbutton" type="submit" class="is-primary" name="checkout"{% if cart == empty %} disabled{% endif %}>
+      Checkout
+    </button>
+  </div>
 </div>
 
-<div id="ss-overlay" class="ss-overlay">
-
-</div>
+<div id="ss-overlay" class="ss-overlay"></div>
 
 {% schema %}
 {
